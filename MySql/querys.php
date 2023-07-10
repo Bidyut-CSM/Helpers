@@ -903,7 +903,7 @@ VIEW COMMAND
 
 -> CREATE VIEW `view_name` AS SELECT * FROM `bank_mst`;
 
--> SELECT * from myquery;
+-> SELECT * from `view_name`;
 
 -> ALTER VIEW `view_name` AS SELECT id,bank_name FROM `bank_mst`;
 
@@ -919,3 +919,12 @@ INDEX COMMAND
 
 -> CREATE INDEX index_name ON tabel_name(column1,....);
 -> DROP INDEX index_name ON tabel_name;  
+
+
+//////////////////////////////////////////
+MYSQL TRIGGER
+CREATE TRIGGER update_cus
+    BEFORE UPDATE ON `customer` FOR EACH ROW
+BEGIN
+    insert into `mini_statement` values (old.acc_no, old.avail_balance);
+END;
